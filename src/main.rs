@@ -31,7 +31,26 @@ fn main() -> io::Result<()> {
         input_decimal = input_digits.iter().rev().enumerate().map(|(index, digit)| { digit * input_base.parse::<isize>().expect("input_base is not an valid isize").pow(index as u32) }).sum();
         println!("{:#?}", input_digits);
         println!("input as decimal: {input_decimal}");
+    } else {
+        input_decimal = input.parse::<isize>().expect("not an iszie");
     }
+
+    let mut temp: isize = input_decimal;
+    let mut list_of_remainders: Vec<isize> = Vec::new();
+    let input_base2: isize = input_base2.parse::<isize>().unwrap();
+    while temp != 0 {
+        list_of_remainders.push(temp%input_base2);
+        temp /= input_base2;
+        println!("{temp}");
+    }
+    println!("{:#?}", list_of_remainders);
+
+    let mut output: String = String::new();
+    for i in list_of_remainders {
+       output.push(char::from_digit(i as u32, input_base2 as u32).unwrap());
+    }
+    let output: String = output.chars().rev().collect::<String>();
+    println!("The output is {output}");
 
     Ok(())
 }
