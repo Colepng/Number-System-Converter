@@ -1,13 +1,19 @@
-use std::io;
+use std::io::{stdin, stdout, Write};
 
-fn main() -> io::Result<()> {
+fn main() -> std::io::Result<()> {
     let mut input = String::new();
     let mut input_base = String::new();
     let mut input_base2 = String::new();
 
-    io::stdin().read_line(&mut input)?;
-    io::stdin().read_line(&mut input_base)?;
-    io::stdin().read_line(&mut input_base2)?;
+    print!("Enter the number you want to convet: ");
+    let _ = stdout().flush();
+    stdin().read_line(&mut input)?;
+    print!("Enter the base of the number you are converting from: ");
+    let _ = stdout().flush();
+    stdin().read_line(&mut input_base)?;
+    print!("Enter the base you want to convert to: "); 
+    let _ = stdout().flush();
+    stdin().read_line(&mut input_base2)?;
 
     let input: &str = input.trim();
     let input_base: &str = input_base.trim();
@@ -53,8 +59,4 @@ fn main() -> io::Result<()> {
     println!("The output is {output}");
 
     Ok(())
-}
-
-fn to_decimal() {
-
 }
